@@ -3,3 +3,4 @@
  */
 export * from './lib/main';
 export * from './lib/combine-latest.module';
+export * from './lib/filter.module';

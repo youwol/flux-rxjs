@@ -107,3 +107,70 @@ export function renderCombineBuilderView( mdle , Factory ){
 
 }
 
+
+export function renderFilterBuilderView(mdle , icon =undefined ){
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g")
+    
+    let width           = 120  
+    let height          = 60
+    let headerHeight    = 25
+
+    addSvgElements([{
+        type:"rect",
+        classes:["module","flow","content"],
+        attributes: {height:height + headerHeight , width:width,x:-width/2,y:-height/2 -headerHeight/2, filter:"url(#shadow)"}
+        }],g)
+        
+    if(mdle.configuration.title != "" )
+        addSvgElements([
+            {type:"path",
+            classes:["module","mdle-color-fill","header"],
+            attributes: {
+                d:`M${-width/2},${-height/2 - headerHeight/6} v${-(headerHeight-10)} q0,-10 10,-10 h${width-20} q10,0 10,10  v${headerHeight-10} z`
+            }},
+            {type:"path",
+            classes:["module","outline","header"],
+            attributes: {
+                d:`M${-width/2},${-height/2 - headerHeight/6} v${-(headerHeight-10)} q0,-10 10,-10 h${width-20} q10,0 10,10  v${headerHeight-10}`
+            }},
+            {type:"text",
+            classes:["module","title","header"],
+            attributes: {x:-width/2+10,y:-height/2-headerHeight/2},
+            textContent: mdle.configuration.title
+            },],g)
+        
+    
+    if(icon){
+        const gIcon = document.createElementNS("http://www.w3.org/2000/svg", "g")
+        gIcon.innerHTML = icon.content
+        g.appendChild(gIcon)
+    }
+    addSvgElements([{
+        type:"circle",
+        id:`input-slot_${mdle.inputSlots[0].slotId+"_"+ mdle.moduleId}`,
+        classes:["slot","input",mdle.inputSlots[0].slotId,"mdle-color-fill"],
+        attributes: {cx:-width/2, cy: 0}
+    }, { 
+        type:"line",
+        id:``,
+        classes:[],
+        attributes: {x1:-width/2+25, y1: -height/2, x2:width/2-25, y2:0, style:"stroke:black;stroke-width:3px" },        
+    }, { 
+        type:"line",
+        id:``,
+        classes:[],
+        attributes: {x1:-width/2, y1: 0, x2:-width/2+25, y2:0, style:"stroke:black;stroke-width:3px" },        
+    }, { 
+        type:"line",
+        id:``,
+        classes:[],
+        attributes: {x1:width/2, y1: 0, x2:width/2-25, y2:0, style:"stroke:black;stroke-width:3px" },        
+    },     
+    { 
+        type:"circle",
+        id:`output-slot_${mdle.outputSlots[0].slotId+"_"+ mdle.moduleId}`,
+        classes:["mdle-color-fill","output","slot",mdle.outputSlots[0].slotId],
+        attributes: {cx:width/2, cy: 0}
+    }], g)
+    return g
+}
