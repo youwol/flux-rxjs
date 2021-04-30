@@ -812,9 +812,9 @@
   integrity sha512-sRjywyfmgwHVRk5CdUFgB0SYKUXEv2ywlEOedt8MeNzg7V8x1K2W4EBntve6ja0z2uRCfOu1dZQDpynBrDWEeA==
 
 "@youwol/flux-core@0.x":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@youwol/flux-core/-/flux-core-0.0.8.tgz#403f62df13fada686e53e430dd71008f0ee10ee5"
-  integrity sha512-rLpdqIqV6DOnp2gGuMJ5L/VB50RQBo55j0aWHUm7gSXha2jtckV37sGJXwnRrwQq/i9YfYXqhfHxp4qG4CWJYQ==
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@youwol/flux-core/-/flux-core-0.0.9.tgz#eca15fb0211a490a0a17af8011746aabbdf4f100"
+  integrity sha512-JByDA2PKVAJHZBfAnIwuUer+5AxEqNqXdWXDkGyrlhJusCJXs2iIxoMVxgzJuVg44U80lCk8Gh45Ll2YkzJIMQ==
 
 "@youwol/flux-view@0.x":
   version "0.0.8"
