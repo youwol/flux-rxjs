@@ -107,7 +107,7 @@ export namespace ModuleDebounceTime{
                 debounceTime(period)
             ).subscribe( ({data,context}) => {
                 this.output$.next({data,context}) 
-                context.parent.end()
+                context.terminate()
             })
         }
         /**
