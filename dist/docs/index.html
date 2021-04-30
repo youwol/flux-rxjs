@@ -61,6 +61,7 @@
 				<a href="#youwolflux-rxjs" id="youwolflux-rxjs" style="color: inherit; text-decoration: none;">
 					<h1>@youwol/flux-rxjs</h1>
 				</a>
+				<p>Collection of modules for Flux exposing RxJs operators.</p>
 				<a href="#installation-build-amp-test" id="installation-build-amp-test" style="color: inherit; text-decoration: none;">
 					<h2>Installation, Build &amp; Test</h2>
 				</a>
@@ -79,19 +80,32 @@
 				<p>To generate code documentation:</p>
 				<pre><code class="language-shell"><span style="color: #000000">yarn doc</span>
 </code></pre>
-				<a href="#developing-flux-packs" id="developing-flux-packs" style="color: inherit; text-decoration: none;">
-					<h2>Developing Flux-Packs</h2>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
 				</a>
+				<p>You can find the documentation <a href="https://youwol.github.io/flux-rxjs/dist/docs/index.html">here</a></p>
+				<a href="#contributions" id="contributions" style="color: inherit; text-decoration: none;">
+					<h2>Contributions</h2>
+				</a>
+				<p>The YouWol project is open-source as much as possible,
+				do not hesitate to contribute by creating branches and pull-requests.</p>
 				<blockquote>
-					<p>The <a href="https://pypi.org/project/youwol/">Youwol fullstack environment</a> should be used when developing
+					<p>The <a href="https://pypi.org/project/youwol/">Youwol fullstack environment</a> (YouWol FSE) should be used when developing
 						<em>flux-pack</em>. It offers an immersive experience of the YouWol ecosystem, and lets
 						you work with your favorite stack. Usually you&#39;ve accessed this file using it anyway.
 					All the links in what follows assumed you&#39;ve started this environment.</p>
 				</blockquote>
-				<a href="#using-your-modules-in-a-flux-app" id="using-your-modules-in-a-flux-app" style="color: inherit; text-decoration: none;">
-					<h3>Using your modules in a <em>flux-app</em></h3>
+				<a href="#fetching-the-code" id="fetching-the-code" style="color: inherit; text-decoration: none;">
+					<h3>Fetching the code</h3>
 				</a>
-				<p>If not already done, <em>build, test &amp; publish</em> the package from the <a href="/ui/dashboard-developer/">dashboard</a>.</p>
+				<p>Create a branch and includes the github folder
+					into your workspace (as defined in your YouWol FSE&#39;s configuration file, under
+					category &#39;flux-pack&#39;). Reload the <a href="/ui/dashboard-developer/">dashboard</a>,
+				the package should now be listed (<em>My Computer=&gt;Packages</em>).</p>
+				<a href="#using-modules-in-a-flux-app" id="using-modules-in-a-flux-app" style="color: inherit; text-decoration: none;">
+					<h3>Using modules in a <em>flux-app</em></h3>
+				</a>
+				<p><em>build, test &amp; publish</em> the package from the <a href="/ui/dashboard-developer/">dashboard</a>.</p>
 				<p>Start by creating a new <em>flux-app</em>:</p>
 				<ul>
 					<li>   short version: follow <a href="/ui/flux-builder/?uri=%7B%22name%22%3A%22new%20flux-project%22%2C%22description%22%3A%22%22%2C%22runnerRendering%22%3A%7B%22layout%22%3A%22%22%2C%22style%22%3A%22%22%7D%2C%22builderRendering%22%3A%7B%22descriptionsBoxes%22%3A%5B%5D%2C%22modulesView%22%3A%5B%5D%2C%22connectionsView%22%3A%5B%5D%7D%2C%22requirements%22%3A%7B%22fluxComponents%22%3A%5B%5D%2C%22fluxPacks%22%3A%5B%5D%2C%22libraries%22%3A%7B%7D%2C%22loadingGraph%22%3A%7B%22graphType%22%3A%22sequential-v1%22%2C%22lock%22%3A%5B%5D%2C%22definition%22%3A%5B%5B%5D%5D%7D%7D%2C%22workflow%22%3A%7B%22modules%22%3A%5B%5D%2C%22connections%22%3A%5B%5D%2C%22plugins%22%3A%5B%5D%2C%22rootLayerTree%22%3A%7B%22layerId%22%3A%22rootLayer%22%2C%22moduleIds%22%3A%5B%5D%2C%22title%22%3A%22rootLayer%22%2C%22children%22%3A%5B%5D%7D%7D%7D">this link</a>, you won&#39;t be able to save your changes</li>
@@ -103,13 +117,15 @@
 				<ul>
 					<li>   right click + &#39;new module(s)&#39;</li>
 					<li>   expand the &#39;explorer node&#39;</li>
-					<li>   navigate to <strong>private</strong> / <strong>default-drive</strong> / ${name of your flux-pack}</li>
-					<li>   select &#39;A simple module&#39; and click &#39;OK&#39;</li>
+					<li>   navigate to <strong>private</strong> / <strong>default-drive</strong> / <strong>{name}</strong></li>
+					<li>   select module(s) and validate</li>
 				</ul>
-				<a href="#starting-designing-your-modules" id="starting-designing-your-modules" style="color: inherit; text-decoration: none;">
-					<h3>Starting designing your modules</h3>
+				<a href="#implementing-new-features" id="implementing-new-features" style="color: inherit; text-decoration: none;">
+					<h3>Implementing new features</h3>
 				</a>
-				<p>To go beyond the [[ SimpleModule | provided example]], you should have a first pass on the
+				<p>You can start iterate in the code, <em>build, test &amp; publish</em> each time
+				you want to test your features in Flux. </p>
+				<p>Documentation about designing modules in Flux can be found in the
 				<a href="/api/assets-gateway/raw/package/QHlvdXdvbC9mbHV4LWNvcmU=/latest/dist/docs/modules/core_concepts.html">flux-core documentation</a>.</p>
 				<a href="#version-management" id="version-management" style="color: inherit; text-decoration: none;">
 					<h3>Version management</h3>
@@ -155,6 +171,12 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/lib_combine_latest_module.html">lib/combine-<wbr>latest.module</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_debounce_time_module.html">lib/debounce-<wbr>time.module</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_filter_module.html">lib/filter.module</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/lib_main.html">lib/main</a>
