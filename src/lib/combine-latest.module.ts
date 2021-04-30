@@ -1,7 +1,7 @@
-import { Context, freeContract, BuilderView, Flux, Property, RenderView, Schema, ModuleFlux, 
-    Pipe, SideEffects
+import { freeContract, BuilderView, Flux, Property, Schema, ModuleFlux, 
+    Pipe, SideEffects, Context
 } from '@youwol/flux-core'
-import { attr$, render } from "@youwol/flux-view"
+import { isContext } from 'node:vm'
 import { combineLatest, Subject, Subscription } from 'rxjs'
 import { renderCombineBuilderView } from './builder-views'
 
@@ -12,7 +12,7 @@ import{pack} from './main'
 
 This module combines the latest values seen by its multiple inputs.
 
-Each time a data reach one input, this value is combined with the latest value seen
+Each time a message reach one input, its data part is combined with the latest data seen
 by all the other inputs. The combined values are send in the module's output as array.
 
 The order of the element in the array match the order of the inputs.
@@ -44,7 +44,10 @@ export namespace ModuleCombineLatest{
          * 
          * Can not be changed at run time.
          */
-        @Property({ description: "number of inputs" })
+        @Property({ 
+            description: "number of inputs",
+            updatableRunTime: false
+        })
         readonly inputsCount : number
 
         constructor( { inputsCount } : { inputsCount?:number } = {} ) {
@@ -55,14 +58,8 @@ export namespace ModuleCombineLatest{
 
     /** ## Module
      *
-     * The module's definition:
-     * -    the logic is defined in [[do]]
-     * -    the view in the *builder-panel* is defined using the decorator
-     * [@BuilderView](/api/assets-gateway/raw/package/QHlvdXdvbC9mbHV4LWNvcmU=/latest/dist/docs/modules/lib_models_decorators.html#builderview)
-     * -    the view in the *rendering-panel* is defined using the decorator
-     * [@RenderView](/api/assets-gateway/raw/package/QHlvdXdvbC9mbHV4LWNvcmU=/latest/dist/docs/modules/lib_models_decorators.html#renderview)
-     *
-     * Module needs to derive from [ModuleFlux](/api/assets-gateway/raw/package/QHlvdXdvbC9mbHV4LWNvcmU=/latest/dist/docs/classes/core_concepts.moduleflux.html)
+     * 
+     * See the global description [[ModuleCombineLatest | here]]
      */
     @Flux({
         pack: pack,
@@ -87,13 +84,13 @@ export namespace ModuleCombineLatest{
          *
          * Ordering of the output's array match the ordering of the inputs.
          */
-        combined$ : Pipe<Array<unknown>>
+        output$ : Pipe<Array<unknown>>
 
         /**
          * Each one of the RxJs.Subject element of this array emit a data when the associated input of the module 
          * receives one.
          */
-        public readonly inputs$ = new Array<Subject<unknown>>()
+        public readonly inputs$ = new Array<Subject<{data:unknown, context: Context}>>()
 
         /**
          * Subscription of the inner rxjs.combineLatest
@@ -116,7 +113,7 @@ export namespace ModuleCombineLatest{
                         subject.next({data, configuration, context})
                 })
             }
-            this.combined$ = this.addOutput({id:"combined$"})
+            this.output$ = this.addOutput({id:"output"})
         }
 
         /**
@@ -125,12 +122,14 @@ export namespace ModuleCombineLatest{
         apply(){
             this.subscription = combineLatest(this.inputs$)
             .subscribe( (d: Array<{data,context}>) => {
-                let out = { 
-                    data: d.map( e => e.data),
-                    configuration:{}, 
-                    context: d.reduce( (acc:any,e)=> { Object.assign(acc.context,e.context); return acc} , {context:{}}).context
-                }
-                this.combined$.next(out)
+
+                let data = d.map( e => e.data)
+                let userContext = d
+                .map( ({context}:{context:Context}) => context.userContext ) 
+                .reduce( (acc,e ) =>  ({...acc,...e}), {})
+
+                let context = new Context("combined output", userContext)
+                this.output$.next({data, context})
             })
         }
         /**
