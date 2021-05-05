@@ -53,7 +53,12 @@ return ({data, context}) => true
             type:'code' 
         })
         readonly implementation : string | CallableFunction
-
+        
+        /**
+         * Resolve [[implementation]] to provide a callable function.
+         * 
+         * @returns the callable function
+         */
         parsedImplementation(): CallableFunction{
             return typeof(this.implementation)==="string" 
                 ? new Function(this.implementation)() 
