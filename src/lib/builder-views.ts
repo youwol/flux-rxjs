@@ -91,12 +91,12 @@ export function renderCombineBuilderView( mdle , Factory ){
     }
 
     addSvgElements([
-        { type:"rect", classes:[], attributes: {height:15 , width:15,x:-width/2,y:height/2 + 20 },
+        { type:"rect", classes:['add-input'], attributes: {height:15 , width:15,x:-width/2,y:height/2 + 20 },
             onclick : ()=> Factory["BuilderView"].notifier$.next({type:'configurationUpdated', data:new_conf(1)})},
         { type:"text", classes:["module","title","header"], attributes: {x:-width/2 + 4 ,y:height/2 + 12 + 20 , },textContent: '+'} ], g)
     if(mdle.inputSlots.length > 2)
         addSvgElements([{ 
-                type:"rect", classes:[], attributes: {height:15 , width:15,x:-width/2 + 20,y:height/2 + 20 },
+                type:"rect", classes:['remove-input'], attributes: {height:15 , width:15,x:-width/2 + 20,y:height/2 + 20 },
                 onclick : ()=> Factory["BuilderView"].notifier$.next({type:'configurationUpdated', data:new_conf(-1)})                   
             },{ 
                 type:"text", classes:["module","title","header"], attributes: {x:-width/2 + 4 + 20,y:height/2 + 12 + 20 , },
