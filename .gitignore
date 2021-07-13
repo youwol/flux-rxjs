@@ -6,4 +6,3 @@ dist/lib
 dist/@youwol
 dist/index.d.ts
 dist/tests
-src/auto_generated.ts
