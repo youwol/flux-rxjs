@@ -1,6 +1,6 @@
 {
     "name": "@youwol/flux-rxjs",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Collection of modules for Flux exposing RxJs operators",
     "author": "",
     "keywords": [
