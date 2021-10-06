@@ -7,3 +7,5 @@ export * from './lib/filter.module';
 export * from './lib/map.module';
 export * from './lib/debounce-time.module';
 export * from './lib/with-latest.module';
+export * from './lib/dispatcher.module';
+export * from './lib/streamer.module';
