@@ -109,7 +109,7 @@ export namespace ModuleCombineLatest{
                     id:`input_${i}`,
                     description: 'An incoming data will be combine with the latest data seen by the other inputs and the result sent to the output.',
                     contract: freeContract(),
-                    onTriggered: ({data, configuration, context}) => 
+                    onTriggered: ({data, configuration, context}: {data:any, configuration:PersistentData, context: Context}) => 
                         subject.next({data, configuration, context})
                 })
             }
