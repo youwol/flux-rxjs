@@ -81,7 +81,7 @@ export namespace WithLatest {
                     configuration:{}, 
                     context: second.reduce( (acc:any,e)=> { Object.assign(acc.context,e.context ? e.context : {}); return acc} , {context:first.context ? first.context : {}}).context
                 }
-                out.data.trigger = first
+                out.data.trigger = first.data
                 this.combined$.next(out)
             })
         }
